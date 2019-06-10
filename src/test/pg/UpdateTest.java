@@ -1,4 +1,4 @@
-package test;
+package test.pg;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,7 +8,7 @@ import java.sql.Statement;
 public class UpdateTest {
 	
 	public static void main(String[] args) {
-		boolean result = update( 1L, "경영지원팀" );
+		boolean result = update( 4L, "맹자수정" );
 		if(result) {
 			System.out.println("update 성공");
 		}
@@ -23,18 +23,18 @@ public class UpdateTest {
 		
 		try {
 			// 1. JDBC Driver(MariaDB) 로딩
-			Class.forName("org.mariadb.jdbc.Driver");
+			Class.forName("org.postgresql.Driver");
 			
 			// 2. 연결하기
-			String url = "jdbc:mariadb://192.168.1.52:3307/webdb";
+			String url = "jdbc:postgresql://192.168.1.52:5432/webdb";
 			conn = DriverManager.getConnection(url,"webdb","webdb");
 			
 			// 3. statement 객체 생성
 			stmt =  conn.createStatement();
 			
 			// 4. SQL문 실행
-			String sql = " update department"
-						  + " set dept_name='" + name + "'"
+			String sql = " update author"
+						  + " set name='" + name + "'"
 						  + " where no=" + no;
 			
 			int count = stmt.executeUpdate(sql); // 들어간 갯수만큼 return

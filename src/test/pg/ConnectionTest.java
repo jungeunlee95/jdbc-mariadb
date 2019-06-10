@@ -1,4 +1,4 @@
-package test;
+package test.pg;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,10 +12,10 @@ public class ConnectionTest {
 		
 		try {
 			// 1. JDBC Driver(MariaDB) 로딩
-			Class.forName("org.mariadb.jdbc.Driver");
+			Class.forName("org.postgresql.Driver");
 			
 			// 2. 연결하기
-			String url = "jdbc:mariadb://192.168.1.52:3307/webdb";
+			String url = "jdbc:postgresql://192.168.1.52:5432/webdb";
 			conn = DriverManager.getConnection(url,"webdb","webdb");
 			
 			System.out.println("연결 성공!!!!");
@@ -31,7 +31,7 @@ public class ConnectionTest {
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
-			}
+			} 
 		}
 		
 

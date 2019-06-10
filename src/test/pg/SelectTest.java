@@ -1,4 +1,4 @@
-package test;
+package test.pg;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,17 +17,17 @@ public class SelectTest {
 			
 			try {
 				// 1. JDBC Driver(MariaDB) 로딩
-				Class.forName("org.mariadb.jdbc.Driver");
+				Class.forName("org.postgresql.Driver");
 				
 				// 2. 연결하기
-				String url = "jdbc:mariadb://192.168.1.52:3307/webdb";
+				String url = "jdbc:postgresql://192.168.1.52:5432/webdb";
 				conn = DriverManager.getConnection(url,"webdb","webdb");
 				
 				// 3. statement 객체 생성
 				stmt =  conn.createStatement();
 				
 				// 4. SQL문 실행
-				String sql = "select no, dept_name from department";
+				String sql = "select * from author";
 				rs = stmt.executeQuery(sql);
 				
 				// 5. 결과 가져오기

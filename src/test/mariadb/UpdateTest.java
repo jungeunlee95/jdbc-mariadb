@@ -1,20 +1,20 @@
-package test;
+package test.mariadb;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class DeleteTest {
+public class UpdateTest {
 	
 	public static void main(String[] args) {
-		boolean result = delete( 7L );
+		boolean result = update( 1L, "경영지원팀" );
 		if(result) {
-			System.out.println("delete 성공");
+			System.out.println("update 성공");
 		}
 	}
 	
-	public static boolean delete(Long no) {
+	public static boolean update(Long no, String name) {
 		boolean result = false;
 		
 		// 	자원정리
@@ -33,7 +33,9 @@ public class DeleteTest {
 			stmt =  conn.createStatement();
 			
 			// 4. SQL문 실행
-			String sql = "delete from department where no=" + no;
+			String sql = " update department"
+						  + " set dept_name='" + name + "'"
+						  + " where no=" + no;
 			
 			int count = stmt.executeUpdate(sql); // 들어간 갯수만큼 return
 			

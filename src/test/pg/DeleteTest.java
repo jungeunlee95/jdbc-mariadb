@@ -1,21 +1,20 @@
-package test;
+package test.pg;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class InsertTest {
+public class DeleteTest {
 	
 	public static void main(String[] args) {
-		boolean result = insert("디자인팀");
+		boolean result = delete( 3L );
 		if(result) {
-			System.out.println("성공");
+			System.out.println("delete 성공");
 		}
 	}
 	
-	public static boolean insert(String name) {
+	public static boolean delete(Long no) {
 		boolean result = false;
 		
 		// 	자원정리
@@ -24,17 +23,17 @@ public class InsertTest {
 		
 		try {
 			// 1. JDBC Driver(MariaDB) 로딩
-			Class.forName("org.mariadb.jdbc.Driver");
+			Class.forName("org.postgresql.Driver");
 			
 			// 2. 연결하기
-			String url = "jdbc:mariadb://192.168.1.52:3307/webdb";
+			String url = "jdbc:postgresql://192.168.1.52:5432/webdb";
 			conn = DriverManager.getConnection(url,"webdb","webdb");
 			
 			// 3. statement 객체 생성
 			stmt =  conn.createStatement();
 			
 			// 4. SQL문 실행
-			String sql = "insert into department values(null, '" + name + "')";
+			String sql = "delete from author where no=" + no;
 			
 			int count = stmt.executeUpdate(sql); // 들어간 갯수만큼 return
 			
